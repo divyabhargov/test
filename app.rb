@@ -1,5 +1,6 @@
 # app.rb
 require 'sinatra'
+require 'pry'
 
 class HelloWorldApp < Sinatra::Base
   post '/run_pr' do
@@ -10,7 +11,18 @@ class HelloWorldApp < Sinatra::Base
   end
 
   get '/test' do
-  	
+  	`which git`
+  	`ssh-add -K ./pr`
+  	`git clone git@github.com:divyabhargov/test.git`
+  	`cd test`
+  	`echo '3919' > pr.txt`
+  	binding.pry
+  	`git add .`
+  	`git commit -m 'Update PR number to 3919`
+  	`git remote add origin git@github.com:divyabhargov/test.git`
+  	`git pull`
+  	`git push origin master`
+  	`cd ..`
   end
 
  #  get '/run_pr' do

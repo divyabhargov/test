@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+table, th, td {
+    border: 1px solid black;
+    padding: 1em;
+}
+.succeeded { 
+    background-color: #2ECC71;
+    color: #ECF0F1;
+}
+.failed { 
+    background-color: #E74C3C;
+    color: #ECF0F1;
+}
+.errored { 
+    background-color: #E67E22;
+    color: #ECF0F1;
+}
+.started { 
+    background-color: #F1C40F;
+    color: #ECF0F1;
+
+}
+.aborted { 
+    background-color: #8F4B2D;
+    color: #ECF0F1;
+}
+
+a {
+	color: #ECF0F1;
+}
+a:hover {
+	color: #FFFFFF;
+	font-weight: 'bold'
+}
+
+</style>
+</head>
+<body>
+
+<h1>Status for PR <%= @pr_no %></h1>
+<div class="container">
+			<table>
+				<% @status_of_jobs.sort.each do |status, jobs| %>
+					<tr class="<%= status %>">
+						<td> <%= status.upcase %> </td>
+						
+						<td>
+							<% jobs.each do |job_name, job| %>
+								<% if job.url %>
+									<a target=_new href='<%= @concourse_url.to_s+job.url.to_s %>'><%= job_name %> </a>
+								<% else %>
+									<%= job_name %>
+								<% end %>
+								<br/>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>	
+			</table>
+		</div>
+</body>
+</html>

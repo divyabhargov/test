@@ -1,1 +1,1 @@
-https://github.com/ashwinstar/gpdb.git
+https://github.com/jchampio/gpdb.git
